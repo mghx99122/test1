@@ -40,28 +40,28 @@ public class GR01 {
 	})
 	public String create() { 
 		
-//		EntityTransaction ts = poHeadDao.getEntityManager().getTransaction();
-//		ts.begin();
-//		POHEAD pohead = new POHEAD();
-//		pohead.setPOSHNO("PO-20131017");
-//		pohead.setPOSHDT(new Date());
-//		pohead.setPODESC("测试");
-//		poHeadDao.create(pohead);
-//
-//		POLINE poline = new POLINE();
-//		poline.setPOHDNO("PO-20131017");
-//		poline.setCUSTNO("CU-SO201310");
-//		poline.setPOBHNO("BT-20132123-1");
-//		poline.setPOLNNO(1);
-//		poline.setPOLNDS("测试");
-//		poline.setPOLNUN("米");
-//		poline.setPOMMDS("测试");
-//		poline.setPRICE(100.326);
-//		poline.setQUINTY(50.2);
-//		poline.setPOMMNA("PC平板电脑");
-//		poline.setPORFNA("PC平板电脑");
-//		poLineDao.create(poline);
-//		ts.commit();
+		EntityTransaction ts = poHeadDao.getEntityManager().getTransaction();
+		ts.begin();
+		POHEAD pohead = new POHEAD();
+		pohead.setPOSHNO("PO-20131017");
+		pohead.setPOSHDT(new Date());
+		pohead.setPODESC("测试");
+		poHeadDao.create(pohead);
+
+		POLINE poline = new POLINE();
+		poline.setPOHDNO("PO-20131017");
+		poline.setCUSTNO("CU-SO201310");
+		poline.setPOBHNO("BT-20132123-1");
+		poline.setPOLNNO(1);
+		poline.setPOLNDS("测试");
+		poline.setPOLNUN("米");
+		poline.setPOMMDS("测试");
+		poline.setPRICE(100.326);
+		poline.setQUINTY(50.2);
+		poline.setPOMMNA("PC平板电脑");
+		poline.setPORFNA("PC平板电脑");
+		poLineDao.create(poline);
+		ts.commit();
 		return "a";
 	}
 }
