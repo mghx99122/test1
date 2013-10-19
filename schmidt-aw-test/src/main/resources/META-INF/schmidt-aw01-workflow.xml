@@ -1,0 +1,6 @@
+<workflows>
+	<workflow name="gr01" type="gr">
+		<state name="qc" id="qc">
+		</state>
+	</workflow>
+</workflows>
