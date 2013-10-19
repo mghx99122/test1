@@ -13,7 +13,7 @@
   <dependencies>
     <dependency>
       <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
+      <artifactId>testng1</artifactId>
       <version>6.1.1</version>
       <scope>test</scope>
       <exclusions>
