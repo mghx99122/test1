@@ -34,7 +34,7 @@ public class Configuration {
 	private Properties properties = new Properties();
 	
 	/**
-	 * the JNDI base name
+	 * the JNDI base name1
 	 */
 	private String baseName;
 	
