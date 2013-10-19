@@ -8,6 +8,7 @@ import java.util.Date;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityTransaction;
+import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 import com.schmidt.dbwm.HPOHEAD;
@@ -32,11 +33,11 @@ public class GR01 {
 	
 	@Inject private HPOLINE poLineDao;
 	
-	@Path("create")
+	@GET
+	@Path("/create")
 	@Renders(value = { 
-			@Render(id = "a", template = "gr/freemarker/testa.ftl"),
+			@Render(id = "a", template = "wm/freemarker/WM01.ftl"),
 	})
-	//@Transactional
 	public String create() { 
 		
 //		EntityTransaction ts = poHeadDao.getEntityManager().getTransaction();
