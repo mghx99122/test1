@@ -19,7 +19,7 @@ import javax.persistence.UniqueConstraint;
 
 /**
  * 
- * ²É¹ºµ¥Í·²¿Purchase Order Head
+ * é‡‡è´­å• Purchase Order Head
  * @author Danny Chen
  * @version $Id$
  * @since 1.0
@@ -39,16 +39,20 @@ public class POHEAD {
 	//ID
 	private Long POHDID;
 	
-	//²É¹ºµ¥ºÅ
+	//é‡‡è´­å•å·
 	private String POSHNO;
 	
-	//²É¹ºÈÕÆÚ
+	//é‡‡è´­æ—¥æœŸ
 	private Date POSHDT;
 	
-	//±¸×¢
+	//å¤‡æ³¨
 	private String PODESC;
 	
-	//Ò³ÃæÉÏÏÔÊ¾ÈÕÆÚ
+	/**
+	 * æ˜¯å¦åˆ é™¤
+	 */
+	private String ISDELE;
+	
 	private String POSHDT1;
 	
 	private DateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
@@ -134,6 +138,16 @@ public class POHEAD {
 
 	public void setPOSHDT1(String pOSHDT1) {
 		POSHDT1 = pOSHDT1;
+	}
+	
+	@Column(name = "ISDELE", nullable=false,length=1)
+	public String getISDELE() {
+		return ISDELE;
+	}
+
+
+	public void setISDELE(String iSDELE) {
+		ISDELE = iSDELE;
 	}
 
 }

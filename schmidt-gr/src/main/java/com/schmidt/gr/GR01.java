@@ -105,6 +105,24 @@ public class GR01 {
 		return "LIST";
 	}
 	
+	@GET
+	@Path("/gr01d")
+	@Renders(value = { 
+			@Render(id = "SUCCESS", template = "gr/freemarker/GR01l.ftl"),
+	})
+	public String delete() {
+		Map<String,Object> propertiesMap = new HashMap<String,Object>();
+		this.poheads = poHeadDao.list(POHEAD.class, propertiesMap);
+		EntityTransaction ts = poHeadDao.getEntityManager().getTransaction();
+		ts.begin();
+		for (POHEAD pohead : this.poheads) {
+			pohead.setISDELE("N");
+			poHeadDao.create(pohead);
+		}
+		ts.commit();
+		return "SUCCESS";
+	}
+	
 	public List<POHEAD> getPoheads() {
 		return poheads;
 	}
