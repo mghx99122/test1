@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2013 Schmidt & Co., (China) Limited. All rights reserved.
  */
-package com.schmidt.gr01;
+package com.schmidt.gr;
 
 import java.util.Set;
 
@@ -16,7 +16,7 @@ import com.schmidt.himalia.restful.AbstractModule;
  * @version $Id$
  * @since 1.0
  */
-@ApplicationPath("/gr01")
+@ApplicationPath("/gr")
 public class Module extends AbstractModule {
 
 	/**

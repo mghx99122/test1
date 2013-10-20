@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2013 Schmidt & Co., (China) Limited. All rights reserved.
  */
-package com.schmidt.gr01;
+package com.schmidt.gr;
 
 import java.util.Date;
 
