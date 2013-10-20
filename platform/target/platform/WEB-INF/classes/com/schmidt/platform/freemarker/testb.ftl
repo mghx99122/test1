@@ -1,3 +1,0 @@
-${title}
-asdfa;sdk
-asdfasd
