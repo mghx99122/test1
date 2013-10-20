@@ -3,12 +3,21 @@
  */
 package com.schmidt.gr;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityTransaction;
+import javax.ws.rs.BeanParam;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 import com.schmidt.dbwm.HPOHEAD;
@@ -33,10 +42,14 @@ public class GR01 {
 	
 	@Inject private HPOLINE poLineDao;
 	
+	private List<POHEAD> poheads = new ArrayList<POHEAD>();
+	
+	private GR01Query query;
+	
 	@GET
-	@Path("/create")
+	@Path("/gr01c")
 	@Renders(value = { 
-			@Render(id = "a", template = "wm/freemarker/WM01.ftl"),
+			@Render(id = "SUCCESS", template = "wm/freemarker/WM01.ftl"),
 	})
 	public String create() { 
 		
@@ -62,6 +75,49 @@ public class GR01 {
 		poline.setPORFNA("PC平板电脑");
 		poLineDao.create(poline);
 		ts.commit();
-		return "a";
+		return "SUCCESS";
+	}
+	
+	@GET
+	@Path("/gr01l")
+	@Renders(value = { 
+			@Render(id = "LIST", template = "gr/freemarker/GR01l.ftl"),
+	})
+	public String list() {
+		Map<String,Object> propertiesMap = new HashMap<String,Object>();
+		poheads = poHeadDao.list(POHEAD.class, propertiesMap);
+		return "LIST";
+	}
+	
+	@POST
+	@Path("/gr01q")
+	@Renders(value = { 
+			@Render(id = "LIST", template = "gr/freemarker/GR01l.ftl"),
+	})
+	public String query(@BeanParam GR01Query query) {
+		Map<String,Object> propertiesMap = new HashMap<String,Object>();
+		
+		if (query.getPOSHNO() != null) {
+			propertiesMap.put("POSHNO", query.getPOSHNO());
+		}
+		poheads = poHeadDao.list(POHEAD.class, propertiesMap);
+		this.query = query;
+		return "LIST";
+	}
+	
+	public List<POHEAD> getPoheads() {
+		return poheads;
+	}
+
+	public void setPoheads(List<POHEAD> poheads) {
+		this.poheads = poheads;
+	}
+	
+	public GR01Query getQuery() {
+		return query;
+	}
+
+	public void setQuery(GR01Query query) {
+		this.query = query;
 	}
 }

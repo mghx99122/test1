@@ -3,6 +3,8 @@
  */
 package com.schmidt.dbwm;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -45,9 +47,14 @@ public class POHEAD {
 	
 	//备注
 	private String PODESC;
+	
+	//页面上显示日期
+	private String POSHDT1;
+	
+	private DateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
 
 	
-	/**
+    /**
 	 * @return the pOHDID
 	 */
 	@Id
@@ -115,6 +122,18 @@ public class POHEAD {
 	 */
 	public void setPODESC(String pODESC) {
 		PODESC = pODESC;
+	}
+	
+	public String getPOSHDT1() {
+		if (this.POSHDT != null) {
+			POSHDT1 = sdf.format(POSHDT);
+		}
+		return POSHDT1;
+	}
+
+
+	public void setPOSHDT1(String pOSHDT1) {
+		POSHDT1 = pOSHDT1;
 	}
 
 }

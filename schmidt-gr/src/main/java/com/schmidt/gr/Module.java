@@ -16,7 +16,7 @@ import com.schmidt.himalia.restful.AbstractModule;
  * @version $Id$
  * @since 1.0
  */
-@ApplicationPath("/gr")
+@ApplicationPath("gr")
 public class Module extends AbstractModule {
 
 	/**
@@ -28,3 +28,4 @@ public class Module extends AbstractModule {
 		resources.add(GR01.class);
 	}
 }
+ 

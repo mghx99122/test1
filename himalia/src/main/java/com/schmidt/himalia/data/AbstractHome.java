@@ -3,11 +3,18 @@
  */
 package com.schmidt.himalia.data;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
 /**
  * the helper class of data access object (DAO) ({@link Home}) for an entity
@@ -135,12 +142,29 @@ public abstract class AbstractHome<E, K> implements Home<E, K>  {
 	 * @see com.schmidt.himalia.data.Home#list(java.lang.String, java.lang.Object[])
 	 */
 	public List<E> list(final String sql, final Object... args) {
-		
 		TypedQuery<E> query = this.createListQuery(sql);
 		for (int i = 0; i < args.length; i++) {
 			query.setParameter(i + 1, args[i]);
 		}
 		return query.getResultList();
+	}
+	
+	
+	public List<E> list(Class<E> clazz,Map<String,Object> propertiesMap) {
+		EntityManager entityManager = this.getEntityManager();
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<E> cq = cb.createQuery(clazz);  
+		Root<E> root = cq.from(clazz);  
+		List<Predicate> pList = new ArrayList<Predicate>();
+		if (propertiesMap != null && propertiesMap.keySet() != null) {
+			for (String property : propertiesMap.keySet()) {
+				Path<String> column = root.get(property); 
+				pList.add(cb.equal(column, propertiesMap.get(property)));
+			}
+			
+			return entityManager.createQuery(cq.where(cb.and(pList.toArray(new Predicate[pList.size()])))).getResultList();
+		} 
+		return entityManager.createQuery(cq.select(root)).getResultList();
 	}
 
 	/**
